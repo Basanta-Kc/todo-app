@@ -2,23 +2,26 @@ const todoInputForm = document.getElementById("todo-input-form");
 const addTodoBtn = document.getElementById("add-todo");
 const todoContainer = document.getElementById("todo-container");
 const alertMessage = document.getElementById("alert-message");
-// const todos = JSON.parse(localStorage.getItem("todos")) ?? [{value: "learn html", status: "DONE"}];
-// const todos = ["learn thml", "learn css"]
-const todos = [
-  { value: "learn html", status: "In Progress" },
-  { value: "learn CSS", status: "Done" },
+const todos = JSON.parse(localStorage.getItem("todos")) ?? [
+  { value: "learn html", status: "DONE" },
 ];
-
+// const todos = ["learn thml", "learn css"]
+// const todos = [
+//   { value: "learn html", status: "In Progress" },
+//   { value: "learn CSS", status: "Done" },
+// ];
+{
+  /* <span class="badge bg-info me-auto ms-1">${todos[i].status}</span>
+          <button type="button" class="btn btn-primary me-1" data-index="${i}">Mark As Completed</button> */
+}
 const renderTodos = () => {
   let todoContainerHtml = "";
 
   // use array ko reduce method
   for (let i = 0; i < todos.length; i++) {
     todoContainerHtml += `
-<li class="list-group-item d-flex justify-content-between align-items-center">
-          ${todos[i].value} 
-          <span class="badge bg-info me-auto ms-1">${todos[i].status}</span>
-          <button type="button" class="btn btn-primary me-1" data-index="${i}">Mark As Completed</button>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          ${todos[i]} 
           <button type="button" class="btn btn-danger" data-index="${i}">Delete</button>
         </li>
 `;
