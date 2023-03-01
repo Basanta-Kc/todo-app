@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <title>Todo App</title>
+  </head>
+  <body>
+    <div class="container mt-2">
+      <h1 class="text-center">Todo App</h1>
+
+      <div class="row">
+        <div id="alert-message" class="alert alert-danger" role="alert">
+          You cannot submit empty value
+        </div>
+        <div class="col-10">
+          <input
+            type="text"
+            id="todo-input-form"
+            class="form-control"
+            placeholder="You New Todo"
+          />
+        </div>
+        <div class="col-2">
+          <button id="add-todo" type="button" class="btn btn-success">
+            Add
+          </button>
+        </div>
+      </div>
+      <ul class="list-group mt-2" id="todo-container">
+        <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+          An item <button type="button" class="btn btn-danger">Danger</button>
+        </li> -->
+      </ul>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
