@@ -2,9 +2,32 @@ const todoInputForm = document.getElementById("todo-input-form");
 const addTodoBtn = document.getElementById("add-todo");
 const todoContainer = document.getElementById("todo-container");
 const alertMessage = document.getElementById("alert-message");
-alertMessage.style.display = "none";
+// const todos = JSON.parse(localStorage.getItem("todos")) ?? [{value: "learn html", status: "DONE"}];
+// const todos = ["learn thml", "learn css"]
+const todos = [
+  { value: "learn html", status: "In Progress" },
+  { value: "learn CSS", status: "Done" },
+];
 
-  
+const renderTodos = () => {
+  let todoContainerHtml = "";
+
+  // use array ko reduce method
+  for (let i = 0; i < todos.length; i++) {
+    todoContainerHtml += `
+<li class="list-group-item d-flex justify-content-between align-items-center">
+          ${todos[i].value} 
+          <span class="badge bg-info me-auto ms-1">${todos[i].status}</span>
+          <button type="button" class="btn btn-primary me-1" data-index="${i}">Mark As Completed</button>
+          <button type="button" class="btn btn-danger" data-index="${i}">Delete</button>
+        </li>
+`;
+  }
+
+  todoContainer.innerHTML = todoContainerHtml;
+};
+
+renderTodos();
 
 addTodoBtn.addEventListener("click", () => {
   const newTodo = todoInputForm.value;
@@ -12,11 +35,9 @@ addTodoBtn.addEventListener("click", () => {
     alertMessage.style.display = "block";
   } else {
     alertMessage.style.display = "none";
-    const newListItem = document.createElement("li");
-    newListItem.className =
-      "list-group-item d-flex justify-content-between align-items-center";
-    newListItem.innerHTML = `${newTodo} <button type="button" class="btn btn-danger">Delete</button>`;
-    todoContainer.append(newListItem);
+    todos.push(newTodo);
+    localStorage.setItem("todos", JSON.stringify(todos));
+    renderTodos();
     todoInputForm.value = "";
     todoInputForm.focus();
   }
@@ -24,6 +45,13 @@ addTodoBtn.addEventListener("click", () => {
 
 todoContainer.addEventListener("click", (e) => {
   if (e.target.className == "btn btn-danger") {
-    e.target.parentElement.remove();
+    const todoToBeRemovedIndex = e.target.dataset.index;
+    todos.splice(todoToBeRemovedIndex, 1);
+    localStorage.setItem("todos", JSON.stringify(todos));
+    renderTodos();
   }
 });
+
+// const persons = ["bibek", "basanta"]
+
+// const persons = [ { name: bibke , age: 20}, { name: basanta, age : 13}]
